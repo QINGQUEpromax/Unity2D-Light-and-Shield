@@ -8,7 +8,7 @@ public class TrapDoor_CanClose : TrapDoor_CannotClose
     public void CloseDoor ()//关闭门
     {
         isOpen = false;
-        SpriteRenderer.sprite = closedDoorSprite;
+        doorSpriteRenderer.sprite = closedDoorSprite;
         boxCollider2D.enabled = true;
     }
 }

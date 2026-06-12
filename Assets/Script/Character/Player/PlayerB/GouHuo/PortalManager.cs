@@ -8,17 +8,17 @@ public class PortalManager : MonoBehaviour
     public Transform playerB;
     public Transform[] destinations; // ����Ŀ��λ������
 
-    public void TransfToD(int index)
-    {
-        if (index >= 0 && index < destinations.Length)
-        {
-            if (GetComponent<GouHuo>().isActive)
-            {
-                playerA.position = destinations[index].position;
-                playerB.position = destinations[index].position;
-                GetComponent<GouHuo>().portalPanel.SetActive(false);
-                GetComponent<GouHuo>().isPanel = false;
-            }
-        }
-    }
+    //public void TransfToD(int index)
+    //{
+    //    if (index >= 0 && index < destinations.Length)
+    //    {
+    //        if (GetComponent<GouHuo>().isActive)
+    //        {
+    //            playerA.position = destinations[index].position;
+    //            playerB.position = destinations[index].position;
+    //            GetComponent<GouHuo>().portalPanel.SetActive(false);
+    //            GetComponent<GouHuo>().isPanel = false;
+    //        }
+    //    }
+    //}
 }

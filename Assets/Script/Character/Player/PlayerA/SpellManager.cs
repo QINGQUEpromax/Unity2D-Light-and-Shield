@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class SpellManager : MonoBehaviour
 {
@@ -11,7 +9,7 @@ public class SpellManager : MonoBehaviour
 
     public bool isMagic = false;
 
-    public List<Spell> spells=new List<Spell>();//魔法列表
+    public List<Spell> spells = new List<Spell>();//魔法列表
     public int selectedSpellIndex = 0;//当前选择的魔法索引
     public float currentMana = 100;//当前魔法值
     public float manaRegentRate = 10;//魔法回复速度
@@ -50,12 +48,22 @@ public class SpellManager : MonoBehaviour
         if (Input.GetMouseButtonDown(1) && playerInput.canInput)//切换魔法
         {
             if (!isLightBallActive)//光球存在期间右键无法切换魔法
-            { selectedSpellIndex = (selectedSpellIndex + 1) % spells.Count; }
+            {
+                if (spells.Count == 0) 
+                    return;
+                selectedSpellIndex = (selectedSpellIndex + 1) % spells.Count; 
+            }
         }
         if (Input.GetMouseButtonDown(0) && playerInput.canInput)//释放魔法
         {
             if (!isMagic)
             {
+                if (selectedSpellIndex < 0 || selectedSpellIndex >= spells.Count)
+                    return;
+
+                Spell selectedSpell = spells[selectedSpellIndex];
+                if (selectedSpell == null)
+                    return;
                 anim.Play("Magic");
                 CastSpell();
                 isMagic = true;
@@ -70,7 +78,10 @@ public class SpellManager : MonoBehaviour
 
     private void CastSpell()//释放魔法
     {
+
+
         var selectedSpell = spells[selectedSpellIndex];//当前选择的魔法
+
         if (currentMana >= selectedSpell.manaCost && selectedSpell.isReady)
         {
             selectedSpell.CastSpell(transform);

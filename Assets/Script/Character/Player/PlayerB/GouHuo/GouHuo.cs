@@ -5,7 +5,6 @@ using UnityEngine;
 public class GouHuo : MonoBehaviour
 {
     Animation anim;
-    private PlayerInput input;
     public GameObject portalPanel; // ����UI���
     public bool isActive;//�Ƿ񼤻�
     public bool isPanel;//�Ƿ��������
@@ -32,14 +31,14 @@ public class GouHuo : MonoBehaviour
                 isActive = true;
                 portalPanel.SetActive(true);
                 isPanel = true;
-                input.enabled = false;
+           
             }
         }
         if ((!PlayerAIn)&&(!PlayerBIn))
         {
             portalPanel.SetActive(false);
             isPanel = false;
-            input.enabled = true;
+    
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
